@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shubham Bhusal × Portfolio [BCA v1.0]</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
     <style>
         :root {
             --neon-green: #00ff9f;
@@ -30,7 +29,6 @@
             position: relative;
         }
 
-        /* Matrix Rain Background */
         #matrix {
             position: fixed;
             top: 0; left: 0;
@@ -68,106 +66,77 @@
             margin: 10px 0 30px;
             text-shadow: 0 0 10px var(--neon-blue);
         }
-        nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: rgba(10,10,15,0.92);
-    backdrop-filter: blur(12px);
-    padding: 18px 5%;
-    z-index: 1000;
-    border-bottom: 1px solid var(--neon-green);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,255,159,0.12);
-}
 
-.nav-brand {
-    color: var(--neon-green);
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-shadow: 0 0 12px var(--neon-green);
-    text-decoration: none;
-    letter-spacing: 1px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 32px;
-}
-
-.nav-links a {
-    color: var(--neon-blue);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--neon-green);
-    text-shadow: 0 0 12px var(--neon-green);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -6px;
-    left: 0;
-    background: var(--neon-green);
-    transition: width 0.4s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-@media (max-width: 768px) {
-    nav {
-        padding: 15px 5%;
-        flex-direction: column;
-        gap: 14px;
-    }
-    
-    .nav-links {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-brand {
-        font-size: 1.4rem;
-    }
-    
-    .nav-links a {
-        font-size: 1rem;
-    }
-}
-/* 
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            background: rgba(10,10,15,0.85);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            z-index: 100;
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(12px);
+            padding: 18px 5%;
+            z-index: 1000;
             border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,255,159,0.12);
         }
 
-        nav a {
+        .nav-brand {
             color: var(--neon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 12px var(--neon-green);
             text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.1rem;
-            transition: all 0.4s;
+            letter-spacing: 1px;
         }
 
-        nav a:hover {
-            color: var(--neon-pink);
-            text-shadow: 0 0 15px var(--neon-pink);
-        } */
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 12px var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background: var(--neon-green);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 14px;
+            }
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-brand { font-size: 1.4rem; }
+            .nav-links a { font-size: 1rem; }
+        }
 
         section {
             max-width: 1100px;
@@ -199,28 +168,27 @@
         .terminal {
             background: #000;
             color: var(--neon-green);
-            padding: 20px;
+            padding: 24px;
             border: 1px solid var(--neon-green);
             border-radius: 8px;
             margin: 20px 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            line-height: 1.5;
             white-space: pre-wrap;
+            position: relative;
         }
 
-        .typing {
-            overflow: hidden;
-            border-right: 3px solid var(--neon-green);
-            white-space: nowrap;
-            animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        /* Blinking cursor effect without breaking long text */
+        .terminal::after {
+            content: "|";
+            position: absolute;
+            color: var(--neon-green);
+            animation: blink 1.1s step-end infinite;
+            margin-left: 3px;
         }
 
         @keyframes blink {
-            50% { border-color: transparent; }
+            50% { opacity: 0; }
         }
 
         .skills-grid {
@@ -300,7 +268,6 @@
 
         @media (max-width: 768px) {
             .glitch { font-size: 3rem; }
-            nav a { margin: 0 12px; font-size: 1rem; }
             section { padding: 25px; margin: 40px 15px; }
         }
     </style>
@@ -309,18 +276,17 @@
 
     <canvas id="matrix"></canvas>
 
-   <nav>
-    <a href="#home" class="nav-brand">SHUBHAM BHUSAL</a>
-    
-    <div class="nav-links">
-        <a href="#home">HOME</a>
-        <a href="#about">ABOUT</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#education">EDUCATION</a>
-        <a href="#goals">GOALS</a>
-        <a href="#contact">CONTACT</a>
-    </div>
-</nav>
+    <nav>
+        <a href="#home" class="nav-brand">SHUBHAM BHUSAL</a>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#education">EDUCATION</a>
+            <a href="#goals">GOALS</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
 
     <header id="home">
         <h1 class="glitch">SHUBHAM BHUSAL</h1>
@@ -335,7 +301,7 @@
 
     <section id="about">
         <h2>ABOUT ME</h2>
-        <div class="terminal typing">
+        <div class="terminal">
 Hello world! I'm Shubham Bhusal from Lumbini, Nepal.
 Currently in 1st semester of Bachelor of Computer Applications (BCA).
 Just started my programming journey — super excited about tech, problem-solving, and building stuff from scratch.
