@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Bhusal × Portfolio [BCA v1.0]</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+    <style>
+        :root {
+            --neon-green: #00ff9f;
+            --neon-blue: #3a6168;
+            --neon-pink: #ff00aa;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050509;
+            --panel: #111118;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: var(--dark-bg);
+            color: #d0d0d0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Matrix Rain Background */
+        #matrix {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.15;
+        }
+
+        header {
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .glitch {
+            color: var(--neon-green);
+            font-size: 4.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 40px var(--neon-pink);
+            animation: glitch 4s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--neon-blue);
+            margin: 10px 0 30px;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    padding: 18px 5%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--neon-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,255,159,0.12);
+}
+
+.nav-brand {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 12px var(--neon-green);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 12px var(--neon-green);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: var(--neon-green);
+    transition: width 0.4s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 14px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-brand {
+        font-size: 1.4rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+}
+/* 
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        nav a {
+            color: var(--neon-green);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+        }
+
+        nav a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
+        } */
+
+        section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--panel);
+            border: 1px solid var(--neon-green);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0,255,159,0.15);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: var(--neon-blue);
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px var(--neon-blue);
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+        }
+
+        .terminal {
+            background: #000;
+            color: var(--neon-green);
+            padding: 20px;
+            border: 1px solid var(--neon-green);
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: 3px solid var(--neon-green);
+            white-space: nowrap;
+            animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill {
+            background: rgba(0,255,159,0.08);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--neon-green);
+            transition: all 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,255,159,0.2);
+        }
+
+        .progress {
+            background: #222;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #0f0f15;
+            border: 1px solid var(--neon-green);
+            color: white;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        button {
+            padding: 12px 30px;
+            background: var(--neon-green);
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: var(--neon-pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--neon-blue);
+            border-top: 1px solid var(--neon-green);
+            margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .glitch { font-size: 3rem; }
+            nav a { margin: 0 12px; font-size: 1rem; }
+            section { padding: 25px; margin: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix"></canvas>
+
+   <nav>
+    <a href="#home" class="nav-brand">SHUBHAM BHUSAL</a>
+    
+    <div class="nav-links">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#goals">GOALS</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+</nav>
+
+    <header id="home">
+        <h1 class="glitch">SHUBHAM BHUSAL</h1>
+        <p class="subtitle">BCA 1st Semester • Lumbini, Nepal • Future Code Architect</p>
+        <p style="font-size:1.3rem; max-width:700px; margin:30px auto; color:#aaa;">
+            >> INITIALIZING PORTFOLIO v1.0...<br>
+            >> STUDENT MODE: ACTIVE<br>
+            >> LEARNING PYTHON • C • HTML/CSS<br>
+            >> STATUS: READY TO EVOLVE
+        </p>
+    </header>
+
+    <section id="about">
+        <h2>ABOUT ME</h2>
+        <div class="terminal typing">
+Hello world! I'm Shubham Bhusal from Lumbini, Nepal.
+Currently in 1st semester of Bachelor of Computer Applications (BCA).
+Just started my programming journey — super excited about tech, problem-solving, and building stuff from scratch.
+
+Right now focusing on:
+→ Python basics (variables, loops, functions, lists)
+→ C programming (pointers scare me... but I'm learning!)
+→ HTML & CSS (making things look cool is fun)
+
+I love gaming, sci-fi movies, and imagining how code can change things.
+This portfolio is my first big HTML/CSS project — hope you like the cyberpunk vibe! :)
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>SKILL MATRIX</h2>
+        <div class="skills-grid">
+            <div class="skill">
+                <h3>Python</h3>
+                <p>Basics, logic building, small scripts</p>
+                <div class="progress"><div class="progress-bar" data-width="45"></div></div>
+            </div>
+            <div class="skill">
+                <h3>C Programming</h3>
+                <p>Functions, arrays, basic pointers</p>
+                <div class="progress"><div class="progress-bar" data-width="35"></div></div>
+            </div>
+            <div class="skill">
+                <h3>HTML + CSS</h3>
+                <p>Structure, styling, responsive design</p>
+                <div class="progress"><div class="progress-bar" data-width="50"></div></div>
+            </div>
+            <div class="skill">
+                <h3>Problem Solving</h3>
+                <p>Thinking logically, debugging</p>
+                <div class="progress"><div class="progress-bar" data-width="30"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>EDUCATION LOG</h2>
+        <div class="terminal">
+> 2025 – Present | BCA 1st Semester
+  Institute: [Butwal Kalika Campus] Butwal, Nepal
+  Status: Active – Learning core programming concepts
+
+> +2 / Higher Secondary (10+2)
+  Stream: [Management ]
+  Year: [2023-2025] – GPA: [3.38]
+
+> SEE 
+  Year: [2023] – GPA: [2.70]
+        </div>
+    </section>
+
+    <section id="goals">
+        <h2>FUTURE GOALS.exe</h2>
+        <ul style="font-size:1.2rem; line-height:2; list-style:none; padding-left:30px;">
+            <li>> Master Python & start Data Structures & Algorithms</li>
+            <li>> Build real projects: Calculator → To-Do App → Mini Games</li>
+            <li>> Learn JavaScript → make websites interactive</li>
+            <li>> Explore Web Development (Frontend + Backend)</li>
+            <li>> Contribute to open source someday</li>
+            <li>> Become a full-stack developer / AI enthusiast</li>
+            <li>> Make something that helps people in Nepal</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>CONNECT [TERMINAL]</h2>
+        <p style="text-align:center; font-size:1.3rem; margin:20px 0;">
+            Email: <a href="mailto:shubhambhusalbkc@gmail.com" style="color:var(--neon-green); text-decoration:none;">shubhambhusalbkc@gmail.com</a>
+        </p>
+
+        <form class="contact-form" action="mailto:shubhambhusalbkc@gmail.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder=">> YOUR NAME" required>
+            <input type="email" name="email" placeholder=">> YOUR EMAIL" required>
+            <textarea name="message" rows="6" placeholder=">> TYPE YOUR MESSAGE HERE..." required></textarea>
+            <button type="submit">SEND SIGNAL</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Shubham Bhusal • Running on HTML + CSS + Dreams • Lumbini, Nepal</p>
+    </footer>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(10,10,15,0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff9f';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                ctx.fillText(text, x, y);
+
+                if(y > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+        });
+
+        // Scroll reveal
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(sec => observer.observe(sec));
+
+        // Progress bars animation
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            setTimeout(() => {
+                bar.style.width = bar.dataset.width + '%';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
